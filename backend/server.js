@@ -1,13 +1,24 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import eventRouter from './routes/events.js'
+import cors from 'cors'
 
+const port = process.env.PORT || 5000
 dotenv.config()
 
 const app = express()
-const port = process.env.PORT || 5000
-
+app.use(cors())
 app.use(express.json())
+
+// show what's server is getting
+app.use((req, res, next) => {
+    console.log(`${req.method} - ${req.path}`)
+    next()
+})
+
+// routes for events
+app.use("/api/events", eventRouter)
 
 mongoose.connect(process.env.MONGODB_URI, )
     .then(() => {
@@ -21,4 +32,4 @@ mongoose.connect(process.env.MONGODB_URI, )
         process.exit(1);
     });
 
-// module -> controle -> model -> server⏎
+// module -> controllers -> route -> server
