@@ -12,10 +12,10 @@ eventRouter.get('/', getAllEvents)
 // get single event
 eventRouter.get('/:id', getSingleEvent)
 
-// update a event
+// update an event
 eventRouter.patch('/:id', updateEvent)
 
-// delete a event
+// delete an event
 eventRouter.delete('/:id', deleteEvent)
 
 export default  eventRouter
