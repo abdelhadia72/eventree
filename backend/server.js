@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import eventRouter from './routes/events.js'
 import cors from 'cors'
+import userRouter from "./routes/user.js";
 
 const port = process.env.PORT || 5000
 dotenv.config()
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 
 // routes for events
 app.use("/api/events", eventRouter)
+app.use("/api/users", userRouter)
 
 mongoose.connect(process.env.MONGODB_URI, )
     .then(() => {
