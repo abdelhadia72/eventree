@@ -4,7 +4,23 @@ import mongoose from 'mongoose'
 
 // post new event
 const postNewEvent = async (req, res) => {
-    res.status(200).json({message: "New events"})
+    const { title, description, image, location, startDate, endDate, tags, attendees, price } = req.body;
+    try{
+        const newEvent = await Event.create({
+            title,
+            description,
+            image,
+            location,
+            startDate,
+            endDate,
+            tags,
+            attendees,
+            price
+        });
+        res.status(201).json(newEvent);
+    } catch(error){
+        res.status(500).json({message: "Internal server error"});
+    }
 }
 
 // get all events
