@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="com.obiscr.chatgpt.settings.EasyCodeState">
+    <option name="projectFiles" value="$PROJECT_DIR$/backend/controllers/event.js;/home/av/Documents/S4/eventree/backend/controllers/user.js;/home/av/Documents/S4/eventree/backend/middleware/authMiddleware.js;/home/av/Documents/S4/eventree/backend/models/Event.js;/home/av/Documents/S4/eventree/backend/models/User.js;/home/av/Documents/S4/eventree/backend/routes/events.js;/home/av/Documents/S4/eventree/backend/routes/user.js;/home/av/Documents/S4/eventree/backend/package.json;/home/av/Documents/S4/eventree/backend/server.js;/home/av/Documents/S4/eventree/package-lock.json;/home/av/Documents/S4/eventree/README.md" />
+  </component>
+</project>

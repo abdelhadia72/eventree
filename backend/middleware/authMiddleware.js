@@ -51,15 +51,13 @@ const authorizeEventOwner = async (req, res, next) => {
         const eventId = req.params.id;
         const event = await Event.findById(eventId);
 
-        // console.log("event id is: ", eventId.event_id)
-        // console.log("user id is: >> ", req.user.id)
 
         if (!event) {
             return res.status(404).json({ error: 'Event not found.' });
         }
 
         if (event.user_id.toString() !== req.user.id.toString()) {
-            return res.status(403).json({ error: 'Not authorized to update this event.' });
+            return res.status(403).json({ error: 'You don\'t authorized for this event' });
         }
 
         next();
