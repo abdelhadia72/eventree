@@ -15,7 +15,8 @@ const postNewEvent = async (req, res) => {
             endDate,
             tags,
             attendees,
-            price
+            price,
+            user_id: req.user._id
         });
         res.status(201).json(newEvent);
     } catch(error){
@@ -43,8 +44,9 @@ const getSingleEvent = async (req, res) => {
 const updateEvent = async (req, res) => {
     const { id } = req.params;
     const { ...eventData } = req.body
-    // check if the id valid
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No event with that id"})
+
+
     const event = await Event.findByIdAndUpdate({_id: id}, eventData, {new: true});
     if(!event) return res.status(404).json({message: "No event found"})
     res.status(200).json(event);
@@ -53,7 +55,6 @@ const updateEvent = async (req, res) => {
 // delete an event
 const deleteEvent = async (req, res) => {
     const { id } = req.params;
-    // check if the id valid
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No event with that id"})
     const event = await Event.findByIdAndDelete({_id: id});
     if(!event) return res.status(404).json({message: "No event found"})

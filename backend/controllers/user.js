@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/User.js';
+import validator from 'validator';
 
 // generate token
 const GenerateToken = (id) => {
@@ -12,8 +13,17 @@ const registerUser = async (req, res) => {
     const { username, email, password } = req.body;
 
     try{
-        const userExist = await User.findOne({email});
-        if(userExist) return res.status(400).json({message: "User already exist"});
+        // check for the fields
+        if(!email, !username, !password) return res.status(400).json({message: "All fields are required"})
+
+        const existUser = await User.findOne({username});
+        const existEmail = await User.findOne({email});
+
+        // check if the username or email already exist
+        if(existUser) return res.status(400).json({message: "Username already exist"});
+        if(existEmail) return res.status(400).json({message: "Email already exist"});
+
+        if(!validator.isStrongPassword(password)) return res.status(400).json({message: "Password is weak"});
         const newUser = await User.create({username, email, password});
 
         const jwtToken = GenerateToken(newUser._id)
@@ -32,7 +42,7 @@ const loginUser = async (req, res) => {
 
         const isMatch = await user.comparePassword(password);
         if(!isMatch){
-            res.status(400).json({message: "Invalid credentials"});
+            res.status(400).json({message: "Wrong password"});
         }
 
         const jwtToken = GenerateToken(user._id);
