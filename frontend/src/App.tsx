@@ -1,36 +1,57 @@
-import { Button } from "@/components/ui/button"
+import Home from './pages/Home'
+import Navbar from './components/custom/Navbar'
+import Login from './pages/Login'
+import Signup from './pages/Signup'
+import CreateEventForm from './pages/CreateEventForm'
 
 import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
+    createBrowserRouter, Outlet,
+    RouterProvider
+} from "react-router-dom";
+import DeletedPage from "@/pages/DeletedPage.tsx";
 
+
+const Root = () => {
+    return (
+        <>
+            <Navbar />
+            <Outlet />
+        </>
+    );
+};
+
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Root />,
+        children: [
+            {
+                path: "/",
+                element:<Home/>
+            },
+            {
+                path: "/login",
+                element: <Login/>,
+            },            {
+                path: "/signup",
+                element: <Signup />,
+            },{
+                path: "/event/create",
+                element: <CreateEventForm />,
+            }, {
+                path: "/event/:id",
+                element: <DeletedPage />,
+            },{
+                path: "/signup",
+                element: <Home />,
+            }
+        ],
+    },
+]);
 
 function App() {
     return (
-        <>
-            <div className="p-4">
-                <Button>Click me</Button>
-            </div>
-            <Sheet>
-                <SheetTrigger className="bg-black text-white p-4 px-10 rounded-2xl">Open</SheetTrigger>
-                <SheetContent>
-                    <SheetHeader>
-                        <SheetTitle>Are you absolutely sure?</SheetTitle>
-                        <SheetDescription>
-                            This action cannot be undone. This will permanently delete your account
-                            and remove your data from our servers.
-                            let's gooo
-                        </SheetDescription>
-                    </SheetHeader>
-                </SheetContent>
-            </Sheet>
-        </>
-
+        <RouterProvider router={router}/>
     )
 }
 
