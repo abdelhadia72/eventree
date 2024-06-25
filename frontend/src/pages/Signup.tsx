@@ -1,19 +1,41 @@
 import React, { useState } from 'react';
+import {Link, useNavigate} from "react-router-dom";
+import axios from "axios";
+import { useAuthContext } from '../Hooks/useAuthContext';
 
 function Signup() {
     const [email, setEmail] = useState('modi@google.com');
     const [username, setUsername] = useState('modi');
-    const [password, setPassword] = useState('Modi123');
+    const [password, setPassword] = useState('Modi123##$');
     const [rememberMe, setRememberMe] = useState(true);
+    const navigate = useNavigate();
+    const { dispatch } = useAuthContext();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Handle form submission logic here
-        console.log({ email, password, rememberMe });
+        axios({
+            method: 'post',
+            url: 'http://localhost:5000/api/users/register',
+            data: {
+                username,
+                email,
+                password,
+
+            }
+        }).then(res => {
+            console.log("data is ", res)
+            localStorage.setItem('user', JSON.stringify(res.data));
+            dispatch({ type: 'LOGIN', payload: res.data });
+            navigate('/');
+        })
+        console.log({ email, password, username });
     };
 
     return (
-        <div className="flex items-center justify-center h-[70vh]">
+        <div className="flex items-center flex-col justify-center h-[70vh]">
+            <h1 className="text-4xl font-bold mb-10 flex justify-center items-center gap-2">
+                Signup
+            </h1>
             <form className="max-w-sm mx-auto w-full" onSubmit={handleSubmit}>
                 <div className="mb-5">
                     <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -43,7 +65,7 @@ function Signup() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <div className="mb-5">
+                <div className="mb-2">
                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Your password
                     </label>
@@ -75,8 +97,11 @@ function Signup() {
                     type="submit"
                     className="text-white bg-red-500 font-bold w-[100%] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                 >
-                    Submit
+                    Signup
                 </button>
+                <div className="mt-4 text-gray-800">
+                    <Link to="/login" className="text-gray-700">already have an account</Link>
+                </div>
             </form>
         </div>
     );

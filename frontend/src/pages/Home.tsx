@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 import axio from "axios";
+import EventCard from "@/components/custom/EventCard.tsx";
 
 const Home = () => {
     const [events, setEvents] = useState([])
@@ -15,20 +15,15 @@ const Home = () => {
 
 
     return (
-        <>
-            <div>Events</div>
-            {events && events.map((event: any) => {
-                return (
-                    <Link to={`event/${event._id}`}>
-                        <div className="mb-4 border-2 border-black" key={event.id}>
-                            <h1 className="font-bold text-2xl">{event.title}</h1>
-                            <p>{event.description}</p>
-                        </div>
-                    </Link>
+        <div className="container max-w-[1300px] pt-12">
+            <div className="font-bold text-2xl py-4 mb-8">Events</div>
+            <div className="grid grid-cols-3 gap-4">
+                {events && events.map((event) => (
+                    <EventCard event={event}/>
+                ))}
+            </div>
 
-                )
-            })}
-        </>
+        </div>
     )
 }
 export default Home
