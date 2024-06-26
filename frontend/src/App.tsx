@@ -8,7 +8,8 @@ import {
     createBrowserRouter, Outlet,
     RouterProvider
 } from "react-router-dom";
-import DeletedPage from "@/pages/DeletedPage.tsx";
+import DetailPage from "@/pages/DetailPage.tsx";
+import About from "@/pages/About.tsx";
 
 
 const Root = () => {
@@ -40,10 +41,14 @@ const router = createBrowserRouter([
                 element: <CreateEventForm />,
             }, {
                 path: "/event/:id",
-                element: <DeletedPage />,
+                element: <DetailPage />,
             },{
                 path: "/signup",
                 element: <Home />,
+            },
+            {
+                path: "/about",
+                element: <Home />
             }
         ],
     },
