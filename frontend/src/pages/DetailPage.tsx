@@ -9,7 +9,7 @@ import { Trash2 } from 'lucide-react';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import { useNavigate } from "react-router-dom";
 
-const DeletedPage = () => {
+const DetailPage = () => {
     const { id } = useParams();
     const [data, setData] = useState<any>(null);
     const { user } = useAuthContext()
@@ -42,7 +42,6 @@ const DeletedPage = () => {
             console.log("Error to delete data is : ", err)
         })
     }
-
 
     return (
         <div className="max-w-[1300px] m-auto container my-4 mb-10">
@@ -90,4 +89,4 @@ const DeletedPage = () => {
         </div>
     )
 }
-export default DeletedPage
+export default DetailPage
