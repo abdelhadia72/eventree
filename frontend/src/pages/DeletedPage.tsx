@@ -43,7 +43,6 @@ const DeletedPage = () => {
         })
     }
 
-    console.log("user data is :", user.jwtToken)
 
     return (
         <div className="max-w-[1300px] m-auto container my-4 mb-10">
