@@ -99,8 +99,9 @@ function Signup() {
                 >
                     Signup
                 </button>
-                <div className="mt-4 text-gray-800">
-                    <Link to="/login" className="text-gray-700">already have an account</Link>
+                <div className="mt-4 text-gray-800 flex items-center gap-2">
+                    <p>already have an account</p>
+                    <Link to="/login" className="font-bold text-sm underline text-red-400">LOGIN</Link>
                 </div>
             </form>
         </div>
