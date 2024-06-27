@@ -8,6 +8,12 @@ import { Badge } from "@/components/ui/badge"
 import { Trash2 } from 'lucide-react';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import { useNavigate } from "react-router-dom";
+import moment from 'moment';
+import { Clock, Clock8, MapPinned, BadgeDollarSign } from 'lucide-react';
+
+const formatDate = (dateString: string) => {
+    return moment(dateString).format('dddd D MMMM [at] h A');
+}
 
 const DetailPage = () => {
     const { id } = useParams();
@@ -22,11 +28,13 @@ const DetailPage = () => {
             }).catch((err) => {
             console.log(err)
         })
+
     }, [id]);
 
-    { }
 
-    console.log("Data is from details : ", data)
+    // change time and make it readable
+
+
 
     const DeleteHandler = () => {
         console.log("Delete event")
@@ -65,15 +73,19 @@ const DetailPage = () => {
                         <h1 className="font-bold text-3xl mb-3">{data.title}</h1>
                         <p className="text-xl font-serif italic mb-5">{data.description}</p>
                         <div className="location text-gray-800 flex items-start gap-2 mt-3 font-bold">
-                            <SlLocationPin className="text-2xl font-bold"/>
+                            <MapPinned className="w-[20px] font-light"/>
                             <p>{data.location}</p>
                         </div>
-                        <div className="location text-gray-800 flex items-start gap-2 mt-2 font-bold">
-                            <LuClock10 className="text-xl font-light"/>
-                            <p>{data.startDate.slice(0, 10)}</p>
+                        <div className="startDate text-gray-800 flex items-start gap-2 mt-2 font-bold">
+                            <Clock className="w-[20px] font-light"/>
+                            <p>{formatDate(data.startDate)}</p>
                         </div>
-                        <div className="location text-gray-800 flex items-start gap-2 mt-1 font-bold">
-                            <MdOutlineAttachMoney className="text-2xl"/>
+                        <div className="endDate text-gray-800 flex items-start gap-2 mt-2 font-bold">
+                            <Clock8 className="w-[20px] font-light"/>
+                            <p>{formatDate(data.endDate)}</p>
+                        </div>
+                        <div className="price text-gray-800 flex items-start gap-2 mt-1 font-bold">
+                            <BadgeDollarSign className="w-[20px] font-light"/>
                             <p>{data.price + '$'}</p>
                         </div>
                         <div className="tags mt-4">
@@ -84,7 +96,9 @@ const DetailPage = () => {
                             </span>
                             ))}
                         </div>
-                        <img src='https://static.vecteezy.com/system/resources/previews/000/153/588/non_2x/vector-roadmap-location-map.jpg' alt={data.title} className="mt-10 w-[70%] h-[400px] rounded-2xl object-cover"/>
+                        <img
+                            src='https://static.vecteezy.com/system/resources/previews/000/153/588/non_2x/vector-roadmap-location-map.jpg'
+                            alt={data.title} className="mt-10 w-[70%] h-[400px] rounded-2xl object-cover"/>
                     </div>
                 </div>
             }
