@@ -26,6 +26,8 @@ const DetailPage = () => {
 
     { }
 
+    console.log("Data is from details : ", data)
+
     const DeleteHandler = () => {
         console.log("Delete event")
         axios({

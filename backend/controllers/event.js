@@ -6,11 +6,15 @@ import mongoose from 'mongoose'
 const postNewEvent = async (req, res) => {
     const { title, description, location, startDate, endDate, tags, attendees, price } = req.body;
     const image = req.file ? req.file.path : '';
+    const imageUrl = `http://${req.get('host')}/${image}`;
+
+    console.log("From event controllers: ", req.file, req.body, imageUrl)
+
     try{
         const newEvent = await Event.create({
             title,
             description,
-            image,
+            image : imageUrl,
             location,
             startDate,
             endDate,
@@ -19,7 +23,11 @@ const postNewEvent = async (req, res) => {
             price,
             user_id: req.user._id
         });
-        res.status(201).json(newEvent);
+        res.status(201).json({
+            ...newEvent.toObject(),
+            image: imageUrl
+        });
+
     } catch(error){
         res.status(500).json({message: "Internal server error"});
     }

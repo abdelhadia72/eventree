@@ -4,6 +4,11 @@ import dotenv from 'dotenv'
 import eventRouter from './routes/events.js'
 import cors from 'cors'
 import userRouter from "./routes/user.js";
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const port = process.env.PORT || 5000
 dotenv.config()
@@ -15,12 +20,16 @@ app.use(express.json())
 // show what's server is getting
 app.use((req, res, next) => {
     console.log(`${req.method} - ${req.path}`)
+    console.log(__dirname)
     next()
 })
 
 // routes for events
 app.use("/api/events", eventRouter)
 app.use("/api/users", userRouter)
+
+//serve static file from the uploads directory
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 mongoose.connect(process.env.MONGODB_URI, )
     .then(() => {
