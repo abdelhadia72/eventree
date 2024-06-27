@@ -4,7 +4,8 @@ import mongoose from 'mongoose'
 
 // post new event
 const postNewEvent = async (req, res) => {
-    const { title, description, image, location, startDate, endDate, tags, attendees, price } = req.body;
+    const { title, description, location, startDate, endDate, tags, attendees, price } = req.body;
+    const image = req.file ? req.file.path : '';
     try{
         const newEvent = await Event.create({
             title,
@@ -45,7 +46,6 @@ const updateEvent = async (req, res) => {
     const { id } = req.params;
     const { ...eventData } = req.body
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(404).json({message: "No event with that id"})
-
 
     const event = await Event.findByIdAndUpdate({_id: id}, eventData, {new: true});
     if(!event) return res.status(404).json({message: "No event found"})
