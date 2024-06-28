@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { useAuthContext } from '../Hooks/useAuthContext';
+import {ArrowRight ,Mail} from "lucide-react";
+import { FaGoogle } from "react-icons/fa";
+import { BsApple } from "react-icons/bs";
+
 
 function Signup() {
     const [email, setEmail] = useState('modi@google.com');
@@ -95,9 +99,10 @@ function Signup() {
                 </div>
                 <button
                     type="submit"
-                    className="text-white bg-red-500 font-bold w-[100%] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                    className="text-white flex gap-2 hover:gap-4 transition-all justify-center bg-red-500 font-bold w-[100%] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                 >
                     Signup
+                    <ArrowRight className="w-[20px]"/>
                 </button>
                 <div className="mt-4 text-gray-800 flex items-center gap-2">
                     <p>already have an account</p>

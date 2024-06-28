@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 
 // post new event
 const postNewEvent = async (req, res) => {
-    const { title, description, location, startDate, endDate, tags, attendees, price } = req.body;
+    const { title, description, location, startDate, endDate, tags, attendees, price, capacity, category, type } = req.body;
     const image = req.file ? req.file.path : '';
     const imageUrl = `http://${req.get('host')}/${image}`;
 
@@ -21,6 +21,9 @@ const postNewEvent = async (req, res) => {
             tags,
             attendees,
             price,
+            capacity,
+            category,
+            type,
             user_id: req.user._id
         });
         res.status(201).json({

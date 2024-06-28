@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
 import { useAuthContext } from '../Hooks/useAuthContext';
+import { ArrowRight } from 'lucide-react';
+import {FaGoogle} from "react-icons/fa";
+import {BsApple} from "react-icons/bs";
 
 function Login() {
     const [email, setEmail] = useState('nxorgamaffnt@google.com');
@@ -35,7 +38,7 @@ function Login() {
         <div className="flex flex-col items-center justify-center h-[70vh]">
             <h1 className="text-4xl font-bold mb-10 flex justify-center items-center gap-2">
                 Login
-                </h1>
+            </h1>
             <form className="max-w-sm mx-auto w-full" onSubmit={handleSubmit}>
                 <div className="mb-5">
                     <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -85,13 +88,14 @@ function Login() {
                 </div>
                 <button
                     type="submit"
-                    className="text-white bg-red-500 font-bold w-[100%] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                    className="text-white flex gap-2 hover:gap-4 transition-all justify-center bg-red-500 font-bold w-[100%] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 rounded-lg text-sm  px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                 >
                     Login
+                    <ArrowRight className="w-[20px]"/>
                 </button>
                 <div className="mt-4 text-gray-800 flex items-center gap-2">
                     <p>I don't have an account</p>
-                    <Link to="/signup" className="font-bold text-sm underline text-red-400">SIGNUP</Link>
+                    <Link to="/signup" className="font-bold text-sm underline text-red-400">SIGNUP </Link>
                 </div>
             </form>
         </div>
