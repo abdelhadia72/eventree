@@ -53,7 +53,7 @@ function Navbar() {
 
                                 <DropdownMenuItem className="row flex gap-2 items-center cursor-pointer">
                                     <UserRound  className="size-5"/>
-                                    <p>Profile</p>
+                                    <Link to='/profile'>Profile</Link>
                                 </DropdownMenuItem>
 
                                 <DropdownMenuItem className="row flex gap-2 items-center cursor-pointer">

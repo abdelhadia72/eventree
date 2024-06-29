@@ -1,6 +1,9 @@
 import Event from '../models/Event.js'
 import mongoose from 'mongoose'
+import User from "../models/User.js";
 
+import sendEmail from "../services/emailService.js";
+import generateQRCode from "../services/qrService.js";
 
 // post new event
 const postNewEvent = async (req, res) => {
@@ -72,4 +75,40 @@ const deleteEvent = async (req, res) => {
     res.status(200).json(event);
 }
 
-export { getAllEvents, getSingleEvent, postNewEvent, updateEvent, deleteEvent }
+const postAttendEvent = async (req, res) => {
+
+    const { id } = req.params;
+    const { userId } = req.body;
+
+    try {
+        const event = await Event.findById(id);
+        const user = await User.findById(userId);
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        if(!event.attendees.includes(userId))
+        {
+            await Event.findByIdAndUpdate(id, { $push: { attendees: userId } }, { new: true });
+            await User.findByIdAndUpdate(userId, { $push: { rsvps: id } }, { new: true });
+
+            const qrContent = `eventId:${id},userId:${userId}`;
+            const qrCodeUrl = await generateQRCode(qrContent);
+        await sendEmail(user.email, qrCodeUrl, user.username);
+
+            res.status(200).json({ message: 'Attendee added and QR code sent successfully' });
+        } else {
+        res.status(400).json({ message: 'User is already attending the event' });
+    }
+    }
+    catch (error) {
+        console.error("Error attending event: ", error);
+        res.status(500).json({message: error})
+    }
+
+}
+
+export { getAllEvents, getSingleEvent, postNewEvent, updateEvent, deleteEvent, postAttendEvent }

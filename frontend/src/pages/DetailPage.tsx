@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import moment from 'moment';
 import { Clock, Clock8, MapPinned, BadgeDollarSign, Ticket, ScrollText, Video, User } from 'lucide-react';
 import {Button} from "@/components/ui/button.tsx";
+import Attend from "@/components/custom/Attend.tsx";
 
 const formatDate = (dateString: string) => {
     return moment(dateString).format('dddd D MMMM [at] h A');
@@ -106,7 +107,8 @@ const DetailPage = () => {
                                 </div>
                             </div>
                                 <div className="right flex flex-col min-w-[250px] border-[2px] h-fit rounded-lg">
-                                    <Button className="bg-red-500 hover:bg-red-900 active:scale-95 font-bold text-lg flex gap-2 justify-center"><Ticket/>Attend</Button>
+                                    {/*<div onChange={<Attend event_id={id}/>} className="bg-red-500 hover:bg-red-900 active:scale-95 font-bold text-lg flex gap-2 justify-center"><Ticket/>Attend</div>*/}
+                                    <Attend event_id={id}/>
                                     <p className="bg-transparent rounded-sm p-2 text-center font-bold">{data.price == 0 ? "Free" : `${data.price} $`}</p>
                                 </div>
                         </div>
@@ -148,6 +150,7 @@ const DetailPage = () => {
                     </div>
                 </div>
             }
+
         </div>
     )
 }

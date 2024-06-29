@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import DetailPage from "@/pages/DetailPage.tsx";
 import About from "@/pages/About.tsx";
+import Profile from "@/pages/Profile.tsx";
 
 
 const Root = () => {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
             {
                 path: "/about",
                 element: <About />
+            },
+            {
+                path: "/profile",
+                element: <Profile />
             }
         ],
     },

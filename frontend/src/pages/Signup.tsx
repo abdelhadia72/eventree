@@ -17,6 +17,7 @@ function Signup() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        console.log({ email, password, username });
         axios({
             method: 'post',
             url: 'http://localhost:5000/api/users/register',
@@ -24,7 +25,6 @@ function Signup() {
                 username,
                 email,
                 password,
-
             }
         }).then(res => {
             console.log("data is ", res)
@@ -53,6 +53,7 @@ function Signup() {
                         required
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
+                        onPaste={(e) => setUsername(e.target.value)}
                     />
                 </div>
                 <div className="mb-5">
@@ -67,6 +68,11 @@ function Signup() {
                         required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
+                        onPaste={(e) => {
+                            e.preventDefault();
+                            const pastedText = e.clipboardData.getData('text').trim();
+                            setEmail(pastedText);
+                        }}
                     />
                 </div>
                 <div className="mb-2">
@@ -81,6 +87,7 @@ function Signup() {
                         required
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        onPaste={(e) => setPassword(e.target.value)}
                     />
                 </div>
                 <div className="flex items-start mb-5">

@@ -1,9 +1,12 @@
 import {Router} from 'express'
-import {getSingleEvent, deleteEvent, updateEvent, postNewEvent, getAllEvents} from "../controllers/event.js";
+import {getSingleEvent, deleteEvent, updateEvent, postNewEvent, getAllEvents, postAttendEvent} from "../controllers/event.js";
 import {authMiddleware, authorizeEventOwner} from '../middleware/authMiddleware.js'
 import upload from '../middleware/upload.js'
 
 const eventRouter = Router()
+
+// post the id into the user attend list (update)
+eventRouter.post('/:id/attend', authMiddleware, postAttendEvent)
 
 // post new event
 eventRouter.post('/', authMiddleware, upload.single('image'), postNewEvent);
