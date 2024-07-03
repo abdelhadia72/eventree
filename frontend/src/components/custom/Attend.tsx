@@ -33,7 +33,7 @@ const Attend = ({ event_id }) => {
         <>
             <button
                 onClick={attendEvent}
-                className="bg-red-500 hover:bg-red-900 active:scale-95 font-bold text-lg flex gap-2 justify-center"
+                className="bg-red-500 p-2 text-white rounded-lg hover:bg-red-900 active:scale-95 font-bold text-lg flex gap-2 justify-center"
             >
                 <Ticket/> Attend
             </button>
