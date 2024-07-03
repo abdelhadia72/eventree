@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import { Badge } from "@/components/ui/badge"
@@ -6,7 +6,7 @@ import { Trash2 } from 'lucide-react';
 import { useAuthContext } from '../Hooks/useAuthContext';
 import { useNavigate } from "react-router-dom";
 import moment from 'moment';
-import { Clock, Clock8, MapPinned, BadgeDollarSign, Ticket, ScrollText, Video, User } from 'lucide-react';
+import { Clock, Clock8, MapPinned, BadgeDollarSign, ScrollText, Video, User, Settings2 } from 'lucide-react';
 import {Button} from "@/components/ui/button.tsx";
 import Attend from "@/components/custom/Attend.tsx";
 
@@ -50,6 +50,11 @@ const DetailPage = () => {
         })
     }
 
+    const EditHandler = () => {
+        console.log("Edit event")
+    }
+
+
     return (
         <div className="max-w-[1300px] m-auto container my-4 mb-10">
             {data &&
@@ -59,12 +64,18 @@ const DetailPage = () => {
 
 
                         {user?.user._id == data?.user_id &&
-                            <div onClick={DeleteHandler}
-                                 className="trash flex gap-2 group transition-all  absolute top-4 right-4 text-red-500 bg-white p-2 rounded-sm cursor-pointer hover:scale-105">
-                                <Trash2/>
+                            <div>
+                                <div onClick={DeleteHandler}
+                                     className="trash flex gap-2 group transition-all  absolute top-4 right-4 text-red-500 bg-white p-2 rounded-sm cursor-pointer hover:scale-105">
+                                    <Trash2/>
+                                </div>
+                                <Link to={`/editevent/${id}`}
+                                     className="trash flex gap-2 group transition-all  absolute top-4 right-16 text-red-500 bg-white p-2 rounded-sm cursor-pointer hover:scale-105">
+                                    <Settings2/>
+                                </Link>
+
                             </div>
                         }
-
                     </div>
                     <div className="text mt-4">
                         <h1 className="font-bold text-3xl mb-3">{data.title}</h1>

@@ -1,5 +1,6 @@
 import {Router} from 'express'
-import { registerUser, loginUser } from "../controllers/user.js";
+import { registerUser, loginUser, updateUser } from "../controllers/user.js";
+import { authMiddleware } from '../middleware/authMiddleware.js'
 
 const userRouter = Router()
 
@@ -9,6 +10,6 @@ userRouter.post('/register', registerUser)
 // login user
 userRouter.post('/login', loginUser)
 
-userRouter.patch('/me')
+userRouter.patch('/me', authMiddleware ,updateUser)
 
 export default  userRouter

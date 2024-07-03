@@ -12,7 +12,7 @@ const EventCard = ({event}) => {
                         <img src={event.image} alt={event.title} className="w-full h-40 object-cover"/>
                         <div className="text px-6 py-3 pt-4">
                             <h1 className="font-bold text-2xl">{event.title}</h1>
-                            <p className="mt-2">{event.description.slice(0, 130) + "..."}</p>
+                            <p className="mt-2">{event.description.slice(0, 60) + "..."}</p>
                             <div className="location text-gray-800 flex items-start gap-2 mt-3 font-bold">
                                 <SlLocationPin className="text-2xl font-bold"/>
                                 <p>{event.location.slice(0, 25) + '...'}</p>

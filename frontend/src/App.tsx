@@ -11,6 +11,8 @@ import {
 import DetailPage from "@/pages/DetailPage.tsx";
 import About from "@/pages/About.tsx";
 import Profile from "@/pages/Profile.tsx";
+import EditEvent from "@/pages/EditEvent.tsx";
+import Landing from "@/pages/Landing.tsx";
 
 
 const Root = () => {
@@ -28,7 +30,7 @@ const router = createBrowserRouter([
         element: <Root />,
         children: [
             {
-                path: "/",
+                path: "/home",
                 element:<Home/>
             },
             {
@@ -54,6 +56,14 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />
+            },
+            {
+                path: "/",
+                element: <Landing />
+            },
+            {
+                path: "/editevent/:eventId",
+                element: <EditEvent />
             }
         ],
     },

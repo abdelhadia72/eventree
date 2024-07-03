@@ -111,4 +111,16 @@ const postAttendEvent = async (req, res) => {
 
 }
 
-export { getAllEvents, getSingleEvent, postNewEvent, updateEvent, deleteEvent, postAttendEvent }
+const search = async (req, res) => {
+    const query = req.query.query;
+    try {
+        const events = await Event.find({ title: { $regex: query, $options: 'i' } });
+        res.json(events);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+export { getAllEvents, getSingleEvent, postNewEvent, updateEvent, deleteEvent, postAttendEvent, search }
+
+

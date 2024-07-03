@@ -3,13 +3,13 @@ import { useState } from 'react';
 import { useAuthContext } from "../../Hooks/useAuthContext";
 import { useLogout } from '../../Hooks/useLogout';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-
+import { Button} from "@/components/ui/button.tsx";
+import { Input } from "@/components/ui/input"
 import { LogOut } from 'lucide-react';
 import { Sparkles } from 'lucide-react';
 import { UserRound } from 'lucide-react';
-import { Settings } from 'lucide-react';
-import { Key } from 'lucide-react';
-
+import { Settings, Search } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 import {
     DropdownMenu,
@@ -25,48 +25,52 @@ function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const { user } = useAuthContext();
 
-    // console.log("User is ", user.user.username)
 
     return (
         <nav className="bg-white dark:bg-gray-900 w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link to="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <img src="/logo.png" className="h-8" alt="Eventree Logo" />
-                    <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Eventree</span>
+                    <img src="/logo.png" className="h-8" alt="Eventree Logo"/>
+                    <span
+                        className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Eventree</span>
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    { !user &&
-                           <Link to='signup' type="button" className="text-white bg-red-600 hover:bg-red-800 active:scale-95 focus:outline-none focus:ring-red-300 rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 flex gap-2 items-center font-bold"><LogOut  className="size-5"/>Sign Up</Link>
+                    {!user &&
+                        <Link to='signup' type="button"
+                              className="text-white bg-red-600 hover:bg-red-800 active:scale-95 focus:outline-none focus:ring-red-300 rounded-lg text-sm px-4 py-2 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 flex gap-2 items-center font-bold"><LogOut
+                            className="size-5"/>Sign Up</Link>
                     }
 
                     {user &&
                         <DropdownMenu>
-                            <DropdownMenuTrigger >
-                                <Avatar >
-                                    <AvatarImage src="https://avatar.iran.liara.run/public/11" />
-                                    <AvatarFallback>CN</AvatarFallback>
+                            <DropdownMenuTrigger>
+                                <Avatar>
+                                    <AvatarImage src={user.user.avatar}/>
+                                    <AvatarFallback>UR</AvatarFallback>
                                 </Avatar>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent>
-                                <DropdownMenuLabel className="uppercase text-red-400">{user && user.user.username}</DropdownMenuLabel>
+                                <DropdownMenuLabel
+                                    className="uppercase text-red-400">{user && user.user.username}</DropdownMenuLabel>
                                 <DropdownMenuSeparator/>
 
                                 <DropdownMenuItem className="row flex gap-2 items-center cursor-pointer">
-                                    <UserRound  className="size-5"/>
+                                    <UserRound className="size-5"/>
                                     <Link to='/profile'>Profile</Link>
                                 </DropdownMenuItem>
 
                                 <DropdownMenuItem className="row flex gap-2 items-center cursor-pointer">
-                                    <Sparkles className="size-5" />
+                                    <Sparkles className="size-5"/>
                                     <p>Upgrade</p>
                                 </DropdownMenuItem>
 
                                 <DropdownMenuItem className="row flex gap-2 items-center cursor-pointer">
-                                    <Settings className="size-5" />
+                                    <Settings className="size-5"/>
                                     <p>Settings</p>
                                 </DropdownMenuItem>
 
-                                <DropdownMenuItem onClick={useLogout()} className="row flex gap-2 items-center cursor-pointer">
+                                <DropdownMenuItem onClick={useLogout()}
+                                                  className="row flex gap-2 items-center cursor-pointer">
                                     <LogOut className="size-5"/>
                                     <p>Logout</p>
                                 </DropdownMenuItem>
@@ -76,6 +80,9 @@ function Navbar() {
 
                     }
 
+                        <p>
+                            <span className="username">{user && user.username}</span>
+                        </p>
 
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -85,8 +92,10 @@ function Navbar() {
                         aria-expanded={isMenuOpen}
                     >
                         <span className="sr-only">Open main menu</span>
-                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
+                        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                             viewBox="0 0 17 14">
+                            <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
+                                  d="M1 1h15M1 7h15M1 13h15"/>
                         </svg>
                     </button>
                 </div>
@@ -100,15 +109,17 @@ function Navbar() {
                                       className="block font-bold text-lg py-2 px-3 text-white bg-red-700 rounded md:bg-transparent md:text-red-700 md:p-0 md:dark:text-red-500"
                                       aria-current="page">Home</Link>
                             </li>
-                            <li className="block py-2 px-3 font-bold text-lg cursor-pointer  text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
-                                        Events
-                            </li>
+                            <Link to="/home"
+                                  className="block py-2 px-3 font-bold text-lg cursor-pointer  text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">
+                                Discover
+                            </Link>
                             <li>
                                 <Link to="/event/create"
                                       className="block font-bold text-lg py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Create</Link>
                             </li>
-                            <Link to='/about' className="block font-bold text-lg py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
-                                    About
+                            <Link to='/about'
+                                  className="block font-bold text-lg py-2 px-3 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-red-700 md:p-0 md:dark:hover:text-red-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 cursor-pointer">
+                                About
                             </Link>
                         </ul>
                     </div>

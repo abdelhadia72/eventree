@@ -1,5 +1,5 @@
 import {Router} from 'express'
-import {getSingleEvent, deleteEvent, updateEvent, postNewEvent, getAllEvents, postAttendEvent} from "../controllers/event.js";
+import {getSingleEvent, deleteEvent, updateEvent, postNewEvent, getAllEvents, postAttendEvent, search} from "../controllers/event.js";
 import {authMiddleware, authorizeEventOwner} from '../middleware/authMiddleware.js'
 import upload from '../middleware/upload.js'
 
@@ -22,5 +22,12 @@ eventRouter.patch('/:id' ,authorizeEventOwner, updateEvent)
 
 // delete an event
 eventRouter.delete('/:id' ,authorizeEventOwner, deleteEvent)
+
+// search for event
+eventRouter.get('/search', search)
+
+
+// eventRouter.get('/search', search);
+
 
 export default  eventRouter

@@ -12,7 +12,7 @@
           <property key="headerText" type="INPUT" value="kotlin.String|{&#10;  &quot;alg&quot;:&quot;HS256&quot;,&#10;  &quot;typ&quot;:&quot;JWT&quot;&#10;}" />
           <property key="payloadText" type="INPUT" value="kotlin.String|{&#10;  &quot;id&quot;:&quot;6677af799c96ccce720235a1&quot;,&#10;  &quot;iat&quot;:1719119737,&#10;  &quot;exp&quot;:1719638137&#10;}" />
           <property key="secret" type="SECRET" value="kotlin.String|SAVED_IN_KEYSTORE" />
-          <property key="encodedText" type="INPUT" value="kotlin.String|eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NzdhZjc5OWM5NmNjY2U3MjAyMzVhMSIsImlhdCI6MTcxOTExOTczNywiZXhwIjoxNzE5NjM4MTM3fQ.uc_J_rvgorf8Ts-7z4ZXyWZprBRHdKJVbsJpIJn3iNw" />
+          <property key="encodedText" type="INPUT" value="kotlin.String|ewogICJhbGciOiJIUzI1NiIsCiAgInR5cCI6IkpXVCIKfQ.ewogICJpZCI6IjY2NzdhZjc5OWM5NmNjY2U3MjAyMzVhMSIsCiAgImlhdCI6MTcxOTExOTczNywKICAiZXhwIjoxNzE5NjM4MTM3Cn0.ZXdvZ0lDSmhiR2NpT2lKSVV6STFOaUlzQ2lBZ0luUjVjQ0k2SWtwWFZDSUtmUS4uaTNxUGhHZXgybzF5WXdrOEl0X09Lc3A0dDA5dWVFaEFQeFpDYkE1Tm05bw" />
           <property key="privateKey" type="SECRET" value="kotlin.String|SAVED_IN_KEYSTORE" />
         </properties>
       </developerToolConfiguration>
@@ -23,5 +23,6 @@
         </properties>
       </developerToolConfiguration>
     </developerToolsConfigurations>
+    <expandedGroupNodeIds />
   </component>
 </project>
