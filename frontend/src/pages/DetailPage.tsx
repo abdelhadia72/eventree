@@ -118,7 +118,6 @@ const DetailPage = () => {
                                 </div>
                             </div>
                                 <div className="right flex flex-col min-w-[250px] border-[2px] h-fit rounded-lg">
-                                    {/*<div onChange={<Attend event_id={id}/>} className="bg-red-500 hover:bg-red-900 active:scale-95 font-bold text-lg flex gap-2 justify-center"><Ticket/>Attend</div>*/}
                                     <Attend event_id={id}/>
                                     <p className="bg-transparent rounded-sm p-2 text-center font-bold">{data.price == 0 ? "Free" : `${data.price} $`}</p>
                                 </div>
@@ -156,7 +155,7 @@ const DetailPage = () => {
 
 
                         <img
-                            src='https://static.vecteezy.com/system/resources/previews/000/153/588/non_2x/vector-roadmap-location-map.jpg'
+                            src='http://localhost:5000/uploads/map.png'
                             alt={data.title} className="mt-10 w-[70%] h-[400px] rounded-2xl object-cover"/>
                     </div>
                 </div>
