@@ -117,46 +117,57 @@ const DetailPage = () => {
                                     ))}
                                 </div>
                             </div>
-                                <div className="right flex flex-col min-w-[250px] border-[2px] h-fit rounded-lg">
-                                    <Attend event_id={id}/>
-                                    <p className="bg-transparent rounded-sm p-2 text-center font-bold">{data.price == 0 ? "Free" : `${data.price} $`}</p>
-                                </div>
-                        </div>
-
-                        <div className="tags mt-6">
-                            <h1 className="text-xl mb-3 ">Place</h1>
-                            <div className="holder flex items-center gap-2">
-                                {/*<UsersRound className="w-5"/>*/}
-                                <Badge
-                                    className="bg-red-500 p-2 font-bold font-serif text-[18px] w-[40px] h-[40px] rounded-sm text-white">{data.capacity}</Badge>
-                                <p className="font-bold">Place Left</p>
+                            <div className="right flex flex-col min-w-[250px] border-[2px] h-fit rounded-lg">
+                                <Attend event_id={id}/>
+                                <p className="bg-transparent rounded-sm p-2 text-center font-bold">{data.price == 0 ? "Free" : `${data.price} $`}</p>
                             </div>
                         </div>
 
-                        <div className="tags mt-6">
-                            <h1 className="text-xl mb-3 ">Category</h1>
-                            <div className="holder flex items-center gap-2">
-                                <div className="bg-red-500 p-2 px-[10px] rounded-sm text-white">
-                                    <ScrollText className="w-5 "/>
+                        <div className="under_holder flex justify-between items-center">
+                            <div className="left flex-grow">
+                                <div className="tags mt-6">
+                                    <h1 className="text-xl mb-3">Place</h1>
+                                    <div className="holder flex items-center gap-2">
+                                        <Badge
+                                            className="bg-red-500 p-2 font-bold font-serif text-[18px] w-[40px] h-[40px] rounded-sm text-white">
+                                            {data.capacity}
+                                        </Badge>
+                                        <p className="font-bold">Place Left</p>
+                                    </div>
                                 </div>
-                                <p className="font-bold">{data.category}</p>
+
+                                <div className="tags mt-6">
+                                    <h1 className="text-xl mb-3">Category</h1>
+                                    <div className="holder flex items-center gap-2">
+                                        <div className="bg-red-500 p-2 px-[10px] rounded-sm text-white">
+                                            <ScrollText className="w-5"/>
+                                        </div>
+                                        <p className="font-bold">{data.category}</p>
+                                    </div>
+                                </div>
+
+                                <div className="tags mt-6">
+                                    <h1 className="text-2xl mb-3">Type</h1>
+                                    <div className="holder flex items-center gap-2 font-bold">
+                                        <div className="bg-red-500 p-2 px-[10px] rounded-sm text-white">
+                                            {data.type === 'online' ? <Video className="w-5"/> :
+                                                <User className="w-5"/>}
+                                        </div>
+                                        <p>{data.type}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="right">
+                                <img
+                                    src='http://localhost:5000/uploads/map.png'
+                                    alt={data.title}
+                                    className="mt-10 h-[400px] rounded-2xl object-cover"
+                                />
                             </div>
                         </div>
 
-                        <div className="tags mt-6">
-                            <h1 className="text-2xl mb-3 ">Type</h1>
-                            <div className="holder flex items-center gap-2 font-bold">
-                                <div className="bg-red-500 p-2 px-[10px] rounded-sm text-white">
-                                    {data.type === 'online' ? <Video className="w-5"/> : <User className="w-5"/>}
-                                </div>
-                                {data.type}
-                            </div>
-                        </div>
 
-
-                        <img
-                            src='http://localhost:5000/uploads/map.png'
-                            alt={data.title} className="mt-10 w-[70%] h-[400px] rounded-2xl object-cover"/>
                     </div>
                 </div>
             }

@@ -2,7 +2,7 @@ import {Search, ChevronRight, Podcast,UserRound,PartyPopper,Handshake,Users} fro
 import {useEffect, useState} from "react";
 import EventCard from "@/components/custom/EventCard.tsx";
 import axio from "axios";
-import {Star, ScanFace, QrCode, Mail} from 'lucide-react'
+import {Star, ScanFace, QrCode, Mail, Ticket, Sparkle} from 'lucide-react'
 
 const Landing = () => {
 
@@ -128,28 +128,24 @@ const Landing = () => {
                             <p>Meetup</p>
                         </div>
                         <div className="items flex flex-col justify-center items-center">
-                            <UserRound className="h-10 w-10 mb-2"/>
-                            <p>Meetup</p>
-                        </div>
-                        <div className="items flex flex-col justify-center items-center">
                             <PartyPopper className="h-10 w-10 mb-2"/>
-                            <p>Meetup</p>
+                            <p>Workshop</p>
                         </div>
                         <div className="items flex flex-col justify-center items-center">
-                            <Podcast className="h-10 w-10 mb-2"/>
-                            <p>Meetup</p>
+                            <Ticket className="h-10 w-10 mb-2"/>
+                            <p>Conference</p>
                         </div>
                         <div className="items flex flex-col justify-center items-center">
                             <Handshake className="h-10 w-10 mb-2"/>
-                            <p>Meetup</p>
+                            <p>Webinar</p>
                         </div>
                         <div className="items flex flex-col justify-center items-center">
                             <Users className="h-10 w-10 mb-2"/>
-                            <p>Meetup</p>
+                            <p>Hackathon</p>
                         </div>
                         <div className="items flex flex-col justify-center items-center">
-                            <Podcast className="h-10 w-10 mb-2"/>
-                            <p>Meetup</p>
+                            <Sparkle className="h-10 w-10 mb-2"/>
+                            <p>Seminar</p>
                         </div>
                     </div>
                 </div>
@@ -157,7 +153,7 @@ const Landing = () => {
                 <div className="poster mt-16 py-16">
                     <div className="flex justify-center">
                         <img className=" rounded-lg h-[500px] w-full bg-cover object-cover"
-                             src="http://localhost:5000/uploads/coffee-shop-meetup.jpg" alt="poster"/>
+                             src="https://www.pcma.org/wp-content/uploads/2020/12/Covening-Asia-Pacific-Sydney-1.jpg" alt="poster"/>
                     </div>
                 </div>
                 {/*events*/}
@@ -178,9 +174,7 @@ const Landing = () => {
                 </div>
             </div>
             {/*footer*/}
-            <footer className="bg-gray-800 text-white text-center py-4">
-                <p>© 2024 Eventree. All rights reserved.</p>
-            </footer>
+
         </div>
     )
 }

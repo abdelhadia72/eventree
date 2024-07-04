@@ -35,7 +35,7 @@ function Login() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center h-[70vh]">
+        <div className="flex flex-col items-center justify-center h-[80vh]">
             <h1 className="text-4xl font-bold mb-10 flex justify-center items-center gap-2">
                 Login
             </h1>

@@ -120,7 +120,7 @@ const EditEvent = () => {
     };
 
     return (
-        <div className="container max-w-[1200px] pt-12">
+        <div className="container max-w-[1200px] pt-12 h-[100vh]">
             <h1 className="text-4xl mb-12 font-serif font-bold text-center">Edit Event</h1>
             <div className="data">
                 <form className="flex w-full gap-10 justify-between" onSubmit={handleSubmit}>

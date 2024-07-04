@@ -18,8 +18,11 @@ import Landing from "@/pages/Landing.tsx";
 const Root = () => {
     return (
         <>
-            <Navbar />
-            <Outlet />
+            <Navbar/>
+            <Outlet/>
+            <footer className="bg-gray-800 text-white text-center py-6 mt-16">
+                <p>© 2024 Eventree. All rights reserved.</p>
+            </footer>
         </>
     );
 };
@@ -27,7 +30,7 @@ const Root = () => {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />,
+        element: <Root/>,
         children: [
             {
                 path: "/home",
